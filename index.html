@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Math Tables Game</title>
+  <title>Math Tables Quiz</title>
   <style>
     body {
       font-family: 'Arial', sans-serif;
@@ -28,9 +28,10 @@
     }
 
     h1 {
-      font-size: 2rem;
+      font-size: 3rem;
       color: #4a90e2;
       margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
     }
 
     label {
@@ -143,7 +144,7 @@
 </head>
 <body>
   <div id="setup-screen">
-    <h1>Math Tables Game</h1>
+    <h1>Math Tables Quiz</h1>
     <form id="game-setup">
       <label for="player-name">Player Name:</label>
       <input type="text" id="player-name" required><br><br>
@@ -185,7 +186,7 @@
   </div>
 
   <div id="game-screen" style="display: none;">
-    <h1>Math Tables Game</h1>
+    <h1>Math Tables Quiz</h1>
     <div id="question-container">
       <p id="question-count"></p>
       <p id="question"></p>
