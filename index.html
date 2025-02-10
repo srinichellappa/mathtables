@@ -114,6 +114,14 @@
     .question-mode-options label {
       margin: 5px 0;
     }
+
+    /* Question count styling */
+    #question-count {
+      font-size: 22px;
+      margin-bottom: 20px;
+      color: #fff;
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
@@ -168,6 +176,7 @@
 
   <div id="game-screen" style="display: none;">
     <div id="score">Score: 0</div>
+    <div id="question-count"></div>
     <div id="question"></div>
     <div id="timer">Time left: <span id="timeValue"></span></div>
     <input type="number" id="answer-input" placeholder="Your answer">
@@ -207,6 +216,7 @@
       const answerInput = document.getElementById("answer-input");
       const feedbackElement = document.getElementById("feedback");
       const scoreElement = document.getElementById("score");
+      const questionCountElement = document.getElementById("question-count");
       const summaryMessage = document.getElementById("summary-message");
       const wrongQuestionsElement = document.getElementById("wrong-questions");
 
@@ -310,6 +320,7 @@
 
         const question = questions[currentQuestionIndex];
         questionElement.textContent = `What is ${question.table} × ${question.multiplier}?`;
+        questionCountElement.textContent = `Question ${currentQuestionIndex + 1}/${questions.length}`;
         answerInput.value = "";
         feedbackElement.textContent = "";
         nextButton.disabled = true;
