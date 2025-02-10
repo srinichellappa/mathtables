@@ -102,6 +102,18 @@
       display: none;
       margin-top: 10px;
     }
+
+    /* Fix alignment for question mode radio buttons */
+    .question-mode-options {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      margin-left: 20px;
+    }
+
+    .question-mode-options label {
+      margin: 5px 0;
+    }
   </style>
 </head>
 <body>
@@ -139,10 +151,12 @@
       <input type="number" id="time-per-question" min="0" max="30" value="10"><br><br>
 
       <label>Select question mode:</label><br>
-      <label><input type="radio" name="question-type" value="all" checked> All possible questions</label><br>
-      <label><input type="radio" name="question-type" value="random10"> Random 10 questions</label><br>
-      <label><input type="radio" name="question-type" value="random20"> Random 20 questions</label><br>
-      <label><input type="radio" name="question-type" value="user-defined"> User-defined number of questions</label><br>
+      <div class="question-mode-options">
+        <label><input type="radio" name="question-type" value="all" checked> All possible questions</label>
+        <label><input type="radio" name="question-type" value="random10"> Random 10 questions</label>
+        <label><input type="radio" name="question-type" value="random20"> Random 20 questions</label>
+        <label><input type="radio" name="question-type" value="user-defined"> User-defined number of questions</label>
+      </div>
       <div id="user-defined-questions">
         <label for="num-questions">Number of questions:</label>
         <input type="number" id="num-questions" min="1" value="10">
@@ -155,7 +169,7 @@
   <div id="game-screen" style="display: none;">
     <div id="score">Score: 0</div>
     <div id="question"></div>
-    <div id="timer">Time left: <span id="timeValue"></span>s</div>
+    <div id="timer">Time left: <span id="timeValue"></span></div>
     <input type="number" id="answer-input" placeholder="Your answer">
     <button id="submit-button">✅ Submit</button>
     <button id="next-button" disabled>⏭ Next Question</button>
@@ -313,11 +327,11 @@
 
       function startTimer() {
         let timeLeft = timePerQuestion;
-        timerElement.textContent = `${timeLeft}s`;
+        timerElement.textContent = `${timeLeft}`;
 
         timer = setInterval(() => {
           timeLeft--;
-          timerElement.textContent = `${timeLeft}s`;
+          timerElement.textContent = `${timeLeft}`;
 
           if (timeLeft <= 0) {
             clearInterval(timer);
