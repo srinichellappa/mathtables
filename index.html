@@ -6,73 +6,77 @@
   <title>Math Tables Quiz</title>
   <style>
     body {
-      font-family: 'Arial', sans-serif;
-      background-color: #f4f4f9;
-      color: #333;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
-
-    #setup-screen, #game-screen, #summary-screen {
-      background-color: #fff;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      max-width: 600px;
-      width: 100%;
+      font-family: 'Poppins', sans-serif;
       text-align: center;
+      margin: 50px;
+      background: linear-gradient(to right, #1e3c72, #2a5298);
+      color: #fff;
     }
 
     h1 {
-      font-size: 3rem;
-      color: #4a90e2;
+      font-size: 40px;
+      text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+    }
+
+    #setup-screen, #game-screen, #summary-screen {
+      background: rgba(255, 255, 255, 0.15);
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+      display: inline-block;
+      max-width: 600px;
+      width: 90%;
+      backdrop-filter: blur(10px);
+    }
+
+    #question {
+      font-size: 30px;
+      font-weight: bold;
       margin-bottom: 20px;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
     }
 
-    label {
-      font-size: 1rem;
-      color: #555;
-      margin: 10px 0;
-      display: block;
+    #score {
+      font-size: 24px;
+      margin-bottom: 20px;
     }
 
-    input[type="text"], input[type="number"] {
+    #timer {
+      font-size: 22px;
+      color: #ffeb3b;
+      margin-bottom: 20px;
+      font-weight: bold;
+    }
+
+    #feedback {
+      font-size: 22px;
+      margin-top: 10px;
+      color: #ff9800;
+      font-weight: bold;
+    }
+
+    input, select, button {
+      font-size: 20px;
+      padding: 12px;
+      margin: 10px;
+      border-radius: 8px;
+      border: none;
+    }
+
+    input, select {
       width: 80%;
-      padding: 10px;
-      margin: 10px 0;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      font-size: 1rem;
-    }
-
-    input[type="checkbox"], input[type="radio"] {
-      margin-right: 10px;
+      text-align: center;
     }
 
     button {
-      background-color: #4a90e2;
-      color: #fff;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 5px;
-      font-size: 1rem;
       cursor: pointer;
-      margin: 10px 0;
-      transition: background-color 0.3s ease;
+      background: #ffeb3b;
+      color: black;
+      transition: 0.3s;
+      font-weight: bold;
     }
 
     button:hover {
-      background-color: #357abd;
-    }
-
-    button:disabled {
-      background-color: #ccc;
-      cursor: not-allowed;
+      background: #ffc107;
     }
 
     #tables-checkboxes {
@@ -84,61 +88,14 @@
     }
 
     #tables-checkboxes label {
-      background-color: #e0e7ff;
+      background-color: rgba(255, 255, 255, 0.2);
       padding: 10px;
-      border-radius: 5px;
+      border-radius: 8px;
       cursor: pointer;
     }
 
     #tables-checkboxes label:hover {
-      background-color: #cbd5e1;
-    }
-
-    #question-container {
-      margin: 20px 0;
-    }
-
-    #question {
-      font-size: 1.5rem;
-      color: #333;
-      margin-bottom: 20px;
-    }
-
-    #timer {
-      font-size: 1.2rem;
-      color: #e74c3c;
-      margin-bottom: 20px;
-    }
-
-    #answer-input {
-      width: 60%;
-      padding: 10px;
-      font-size: 1rem;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      margin-bottom: 20px;
-    }
-
-    #feedback {
-      font-size: 1.2rem;
-      margin: 10px 0;
-    }
-
-    #score {
-      font-size: 1.2rem;
-      color: #2ecc71;
-      margin: 10px 0;
-    }
-
-    #wrong-questions {
-      color: #e74c3c;
-      margin: 20px 0;
-    }
-
-    #question-count {
-      font-size: 1.2rem;
-      color: #555;
-      margin-bottom: 20px;
+      background-color: rgba(255, 255, 255, 0.3);
     }
 
     #user-defined-questions {
@@ -148,14 +105,14 @@
   </style>
 </head>
 <body>
-  <div id="setup-screen">
-    <br> <br> <br> <br>
-    <h1>Math Tables Quiz</h1>
-    <form id="game-setup">
-      <label for="player-name">Player Name:</label>
-      <input type="text" id="player-name" required><br><br>
+  <h1>🎯 Fun Math Tables Game 🧮</h1>
 
-      <label>Select Tables:</label><br>
+  <div id="setup-screen">
+    <form id="game-setup">
+      <label for="player-name">Enter your name:</label>
+      <input type="text" id="player-name" placeholder="Your name" required><br><br>
+
+      <label>Choose tables to include:</label><br>
       <div id="tables-checkboxes">
         <!-- Checkboxes for tables 2-16 -->
         <label><input type="checkbox" name="table" value="2"> 2</label>
@@ -175,14 +132,13 @@
         <label><input type="checkbox" name="table" value="16"> 16</label>
       </div><br>
 
-      <label for="multiplier">Multiplier (up to):</label>
-      <input type="number" id="multiplier" min="1" value="10" required><br><br>
+      <label for="multiplier">Choose maximum multiplier:</label>
+      <input type="number" id="multiplier" min="1" max="20" value="10" required><br><br>
 
-      <label for="time-per-question">Time per question (seconds):</label>
-      <input type="number" id="time-per-question" min="1" value="10">
-      <label><input type="checkbox" id="non-timed"> Non-timed</label><br><br>
+      <label for="time-per-question">Choose time per question (seconds, enter 0 for untimed):</label>
+      <input type="number" id="time-per-question" min="0" max="30" value="10"><br><br>
 
-      <label>Question Selection:</label><br>
+      <label>Select question mode:</label><br>
       <label><input type="radio" name="question-type" value="all" checked> All possible questions</label><br>
       <label><input type="radio" name="question-type" value="random10"> Random 10 questions</label><br>
       <label><input type="radio" name="question-type" value="random20"> Random 20 questions</label><br>
@@ -192,22 +148,18 @@
         <input type="number" id="num-questions" min="1" value="10">
       </div><br>
 
-      <button type="button" id="begin-button">Begin</button>
+      <button type="button" id="begin-button">🚀 Begin</button>
     </form>
   </div>
 
   <div id="game-screen" style="display: none;">
-    <h1>Math Tables Quiz</h1>
-    <div id="question-container">
-      <p id="question-count"></p>
-      <p id="question"></p>
-      <p id="timer"></p>
-      <input type="number" id="answer-input" placeholder="Your answer">
-      <button id="submit-button">Submit</button>
-      <button id="next-button" disabled>Next Question</button>
-    </div>
-    <p id="feedback"></p>
-    <p id="score">Score: 0</p>
+    <div id="score">Score: 0</div>
+    <div id="question"></div>
+    <div id="timer">Time left: <span id="timeValue"></span>s</div>
+    <input type="number" id="answer-input" placeholder="Your answer">
+    <button id="submit-button">✅ Submit</button>
+    <button id="next-button" disabled>⏭ Next Question</button>
+    <div id="feedback"></div>
   </div>
 
   <div id="summary-screen" style="display: none;">
@@ -237,13 +189,12 @@
       const numQuestionsInput = document.getElementById("num-questions");
 
       const questionElement = document.getElementById("question");
-      const timerElement = document.getElementById("timer");
+      const timerElement = document.getElementById("timeValue");
       const answerInput = document.getElementById("answer-input");
       const feedbackElement = document.getElementById("feedback");
       const scoreElement = document.getElementById("score");
       const summaryMessage = document.getElementById("summary-message");
       const wrongQuestionsElement = document.getElementById("wrong-questions");
-      const questionCountElement = document.getElementById("question-count");
 
       let playerName = "";
       let selectedTables = [];
@@ -289,13 +240,18 @@
       });
 
       function startGame() {
-        playerName = playerNameInput.value;
+        playerName = playerNameInput.value.trim();
         selectedTables = Array.from(document.querySelectorAll("input[name='table']:checked")).map(cb => parseInt(cb.value));
         multiplier = parseInt(multiplierInput.value);
         timePerQuestion = parseInt(timePerQuestionInput.value);
-        isTimed = !nonTimedCheckbox.checked;
+        isTimed = timePerQuestion > 0;
         questionType = document.querySelector("input[name='question-type']:checked").value;
         numQuestions = parseInt(numQuestionsInput.value);
+
+        if (playerName === "") {
+          alert("Please enter your name.");
+          return;
+        }
 
         if (selectedTables.length === 0) {
           alert("Please select at least one table.");
@@ -339,8 +295,7 @@
         }
 
         const question = questions[currentQuestionIndex];
-        questionElement.textContent = `${question.table} x ${question.multiplier} = ?`;
-        questionCountElement.textContent = `Question ${currentQuestionIndex + 1}/${questions.length}`;
+        questionElement.textContent = `What is ${question.table} × ${question.multiplier}?`;
         answerInput.value = "";
         feedbackElement.textContent = "";
         nextButton.disabled = true;
@@ -358,11 +313,11 @@
 
       function startTimer() {
         let timeLeft = timePerQuestion;
-        timerElement.textContent = `Time left: ${timeLeft}s`;
+        timerElement.textContent = `${timeLeft}s`;
 
         timer = setInterval(() => {
           timeLeft--;
-          timerElement.textContent = `Time left: ${timeLeft}s`;
+          timerElement.textContent = `${timeLeft}s`;
 
           if (timeLeft <= 0) {
             clearInterval(timer);
@@ -406,7 +361,7 @@
         summaryScreen.style.display = "block";
 
         summaryMessage.textContent = `Good game, ${playerName}! Your final score is ${score}/${questions.length}.`;
-        wrongQuestionsElement.textContent = wrongQuestions.map(q => `${q.table} x ${q.multiplier} = ${q.answer}`).join(", ");
+        wrongQuestionsElement.textContent = wrongQuestions.map(q => `${q.table} × ${q.multiplier} = ${q.answer}`).join(", ");
       }
 
       function resetGame() {
